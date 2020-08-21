@@ -1,62 +1,43 @@
 /* eslint-disable prefer-const */
+import { getUrlsFromDocument, removeHashFromUrl } from './utils';
+
 const BASE_URL = 'https://developer.actyx.com/';
+const VISIT_TIMEOUT = 10 * 1000;
 
 describe('developer.com', () => {
-  it('should open page', () => {
-    cy.visit(BASE_URL);
-    cy.contains('Actyx');
-  });
-
-  it('should detect broken links', () => {
-    cy.document().then((doc) => {
-      const urls = Array.from(doc.querySelectorAll('a'))
-        .map((x) => x.href)
-        .filter((x) => x.length > 0);
-      console.log(urls);
-      urls.forEach((url) => {
-        cy.visit({
-          url: url,
-        });
-      });
-
-      //
-    });
-  });
-
-  const removeHashFromUrl = (url: string) => url.split('#')[0];
-
-  const getUrlsFromDOM = (doc: Document) =>
-    Array.from(doc.querySelectorAll('a'))
-      .map((x) => x.href)
-      .filter((x) => x.length > 0);
-
-  it.only('should detect recursivelly', () => {
-    let que: string[] = [];
-    let external: string[] = [];
+  it('should walk website and detect broken links', () => {
+    let urlsQue: string[] = [];
+    let urlsExternal: string[] = [];
 
     cy.visit(BASE_URL);
 
     cy.document().then((doc) => {
-      que = getUrlsFromDOM(doc);
+      urlsQue = getUrlsFromDocument(doc);
 
       const checkUrls = () => {
-        let next = que.pop();
-        console.log('next', next, que.length);
+        let next = urlsQue.pop();
         if (next) {
           const isInternal = next.startsWith(BASE_URL);
           if (isInternal) {
             next = removeHashFromUrl(next);
-            cy.visit({ url: next, failOnStatusCode: true, timeout: 10 * 1000 });
-            const newItems = getUrlsFromDOM(document);
-            const filtered = newItems.filter((x) => !que.includes(x) && x.startsWith(BASE_URL));
-            que = [...que, ...filtered];
+            cy.visit({
+              url: next,
+              failOnStatusCode: true,
+              timeout: VISIT_TIMEOUT,
+            });
+            const urlsVisit = getUrlsFromDocument(document);
+            const urlUnique = urlsVisit.filter(
+              (x) => !urlsQue.includes(x) && x.startsWith(BASE_URL)
+            );
+            urlsQue = [...urlsQue, ...urlUnique];
             checkUrls();
           } else {
-            external.push(next);
+            urlsExternal.push(next);
             checkUrls();
           }
         } else {
           console.log('DONE!');
+          console.log(urlsExternal);
         }
       };
 
