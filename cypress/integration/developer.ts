@@ -1,5 +1,5 @@
 /* eslint-disable prefer-const */
-import { getUrlsFromDocument, removeHashFromUrl } from './utils';
+import { filterInternalUrls, getUrlsFromDocument, removeHashFromUrl } from './utils';
 
 const BASE_URL = 'https://developer.actyx.com/';
 const VISIT_TIMEOUT = 10 * 1000;
@@ -26,9 +26,7 @@ describe('developer.com', () => {
               timeout: VISIT_TIMEOUT,
             });
             const urlsVisit = getUrlsFromDocument(document);
-            const urlUnique = urlsVisit.filter(
-              (x) => !urlsQue.includes(x) && x.startsWith(BASE_URL)
-            );
+            const urlUnique = filterInternalUrls(urlsQue, urlsVisit, BASE_URL);
             urlsQue = [...urlsQue, ...urlUnique];
             checkUrls();
           } else {
