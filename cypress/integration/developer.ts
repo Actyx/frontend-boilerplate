@@ -23,6 +23,8 @@ describe('developer.com', () => {
     });
   });
 
+  const removeHashFromUrl = (url: string) => url.split('#')[0];
+
   const getUrlsFromDOM = (doc: Document) =>
     Array.from(doc.querySelectorAll('a'))
       .map((x) => x.href)
@@ -30,35 +32,35 @@ describe('developer.com', () => {
 
   it.only('should detect recursivelly', () => {
     let que: string[] = [];
+    let external: string[] = [];
 
     cy.visit(BASE_URL);
+
     cy.document().then((doc) => {
       que = getUrlsFromDOM(doc);
-      const next = que.pop();
-      if (next) {
-        const isInternal = next.startsWith(BASE_URL);
-        if (isInternal) {
-          cy.visit({ url: next }).then((x) => {
-            console.log('ready');
-            const newItems = getUrlsFromDOM(x.document);
-            const filtered = newItems.filter((x) => !que.includes(x));
+
+      const checkUrls = () => {
+        let next = que.pop();
+        console.log('next', next, que.length);
+        if (next) {
+          const isInternal = next.startsWith(BASE_URL);
+          if (isInternal) {
+            next = removeHashFromUrl(next);
+            cy.visit({ url: next, failOnStatusCode: true, timeout: 10 * 1000 });
+            const newItems = getUrlsFromDOM(document);
+            const filtered = newItems.filter((x) => !que.includes(x) && x.startsWith(BASE_URL));
             que = [...que, ...filtered];
-          });
+            checkUrls();
+          } else {
+            external.push(next);
+            checkUrls();
+          }
         } else {
-          console.log('not internal');
+          console.log('DONE!');
         }
-      }
-      // while (que.length > 0) {
-      //   const next = que.pop();
-      //   if (next) {
-      //     const isInternal = next.startsWith(BASE_URL);
-      //     if (isInternal) {
-      //       cy.visit({ url: next });
-      //     } else {
-      //       que.push(next);
-      //     }
-      //   }
-      // }
+      };
+
+      checkUrls();
     });
   });
 });
