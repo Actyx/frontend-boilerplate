@@ -1,7 +1,8 @@
 import { echo, exec } from 'shelljs';
 
-import { DEVELOPER_SITE } from './settings';
+import { SETTINGS } from './settings';
 
-echo('Checking links:');
+const mode = process.argv[2] as 'prod' | 'dev';
+const site = process.argv[3] as 'developer' | 'main' | 'download';
 
-exec(`npx blc ${DEVELOPER_SITE} -ro --color always`);
+exec(`npx blc ${SETTINGS[mode][site]} -ro --color always`);
