@@ -4,9 +4,4 @@ export const SETTINGS = {
     main: 'https://www.actyx.com',
     download: 'https://downloads.actyx.com',
   },
-  dev: {
-    developer: '',
-    main: '',
-    download: '',
-  },
 };
