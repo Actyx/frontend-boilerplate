@@ -28,7 +28,11 @@ describe('get-started', () => {
     // submit form
     const btnSumbit = cy.get('button[type="submit"]').should('exist');
     btnSumbit.click();
+
+    // assert submit was successful
     cy.contains('Thank you!').should('exist');
-    //https://www.actyx.com/thank-you/
+    cy.location().should((loc) => {
+      expect(loc.href).to.eq('https://www.actyx.com/thank-you');
+    });
   });
 });
