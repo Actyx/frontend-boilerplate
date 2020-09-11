@@ -7,4 +7,4 @@ const site = process.argv[3] as 'developer' | 'main' | 'download';
 
 echo(`Checking links: ${mode} ${site}`);
 
-exec(`npx blc ${SETTINGS[mode][site]} -ro --color always`);
+exec(`npx blc ${SETTINGS[mode][site]} -ro ${mode === 'prod' && '-e'} --color always`);
