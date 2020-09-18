@@ -4,7 +4,7 @@
   "scripts": {
     "build:start": "http-server -p 8081 ./build/project",
     "build": "webpack --mode production --output build/project/bundle.js",
-    "check": "npm run tsc && npm run lint && npm run test",
+    "check": "npm run tsc && npm run lint",
     "clean": "shx rm -rf dist && shx rm -rf build && shx rm -rf coverage",
     "cy:verify": "cypress verify",
     "dep": "depcheck",
