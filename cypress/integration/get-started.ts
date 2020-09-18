@@ -20,7 +20,13 @@ const submitForm = () => {
   btnSumbit.click();
 };
 
-describe('get-started', () => {
+describe('actyx.com/get-started/', () => {
+  it('should return 200 status', () => {
+    cy.request(URL_START).then((resp) => {
+      expect(resp.status).to.eq(200);
+    });
+  });
+
   it('should schedule a call for a factory manager', () => {
     cy.visit(URL_START);
 
