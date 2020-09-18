@@ -40,12 +40,12 @@ describe('www.actyx.com/', () => {
     cy.contains('Thank you! Your request was successfully submitted.');
   });
 
-  it('should display imprint en', () => {
+  it('should display imprint with valid link en', () => {
     cy.visit(URL_HOME_EN);
     cy.contains('Imprint').should('exist').should('have.attr', 'href', '/imprint');
   });
 
-  it('should display imprint de', () => {
+  it('should display imprint with valid link de', () => {
     cy.visit(URL_HOME_DE);
     cy.contains('Impressum').should('exist').should('have.attr', 'href', '/de/imprint');
   });
