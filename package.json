@@ -22,7 +22,8 @@
     "links:check:prod:developer": "ts-node ./src/check-links.ts prod developer",
     "links:check:prod:main": "ts-node ./src/check-links.ts prod main",
     "links:check:prod:download": "ts-node ./src/check-links.ts prod download",
-    "links:check:prod": "npm run links:check:prod:developer && npm run links:check:prod:main && npm run links:check:prod:download"
+    "links:check:prod": "npm run links:check:prod:developer && npm run links:check:prod:main && npm run links:check:prod:download",
+    "evaluate": "npm run cy:run && npm run links:check:prod"
   },
   "dependencies": {
     "typescript": "^3.9.5"
