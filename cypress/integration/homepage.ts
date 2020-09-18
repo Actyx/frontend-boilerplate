@@ -18,7 +18,7 @@ describe('www.actyx.com/', () => {
     cy.contains('Die Plattform zur Digitalisierung der Fabrik').should('exist');
   });
 
-  it.only('should sign-up to our newsletter', () => {
+  it('should sign-up to newsletter', () => {
     // check if text is on page
     const email = mkRandomEmail();
     cy.contains('Sign-up to our newsletter').should('exist');
