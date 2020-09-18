@@ -34,4 +34,18 @@ describe('www.actyx.com/', () => {
     submit.click();
     cy.contains('Thank you! Your request was successfully submitted.');
   });
+
+  describe.only('cookies warning', () => {
+    it('should show cookies warning in en', () => {
+      cy.visit(`${URL_HOME}`);
+      cy.contains(
+        'This website stores cookies on your computer to provide more personalized services to you.'
+      ).should('exist');
+    });
+
+    it('should show cookies warning in de', () => {
+      cy.visit(`${URL_HOME}/de/`);
+      cy.contains('Diese Website speichert Cookies auf Ihrem Computer.').should('exist');
+    });
+  });
 });
