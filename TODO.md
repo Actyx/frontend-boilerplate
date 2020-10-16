@@ -7,3 +7,6 @@
 - Create base for visual regression `npm run visual:base`
 - Perform regression using Cypress headless `npm run visual:diff`
 - Check if there are any difference `npm run visual`
+
+Next:
+- test more and make sure the visual regression is solid otherwise change plugin
