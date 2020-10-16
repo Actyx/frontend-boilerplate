@@ -15,7 +15,8 @@
     "noErrorTruncation": true,
     "types": [
       "react",
-      "jest"
+      "jest",
+      "node"
     ],
   },
   "include": [

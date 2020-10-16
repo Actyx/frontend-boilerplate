@@ -1,6 +1,10 @@
 # Checker specifics
 report-links
 
+# Visual refression
+cypress/snapshots/actual
+cypress/snapshots/diff
+
 # Project specifics
 build
 cypress/screenshots

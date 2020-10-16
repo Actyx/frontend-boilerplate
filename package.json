@@ -28,7 +28,10 @@
     "links:check:dev:download": "ts-node ./src/check-links.ts dev download",
     "links:check:dev": "npm run links:check:dev:developer && npm run links:check:dev:main && npm run links:check:dev:download",
     "evaluate": "npm run cy:run && npm run links:check:prod",
-    "evaluate:dev": "npm run cy:run && npm run links:check:dev"
+    "evaluate:dev": "npm run cy:run && npm run links:check:dev",
+    "visual:base": "./node_modules/.bin/cypress run --env type=base --config screenshotsFolder=cypress/snapshots/base",
+    "visual:diff": "./node_modules/.bin/cypress run --env type=actual",
+    "visual": "npm run visual:diff && ts-node ./src/check-visual-regression.ts"
   },
   "dependencies": {
     "cypress-visual-regression": "^1.5.2",
@@ -42,7 +45,7 @@
     "@bahmutov/add-typescript-to-cypress": "^2.1.2",
     "@cypress/webpack-preprocessor": "^5.4.1",
     "@types/jest": "^26.0.3",
-    "@types/node": "^14.0.14",
+    "@types/node": "^14.11.9",
     "@types/react": "^16.9.49",
     "@types/shelljs": "^0.8.8",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
