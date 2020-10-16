@@ -31,6 +31,7 @@
     "evaluate:dev": "npm run cy:run && npm run links:check:dev"
   },
   "dependencies": {
+    "cypress-visual-regression": "^1.5.2",
     "typescript": "^3.9.5"
   },
   "devDependencies": {
