@@ -9,4 +9,5 @@
 - Check if there are any difference `npm run visual`
 
 Next:
+
 - test more and make sure the visual regression is solid otherwise change plugin
