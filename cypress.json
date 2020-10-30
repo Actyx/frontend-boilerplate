@@ -2,6 +2,8 @@
   "video": false,
   "viewportWidth": 1920,
   "viewportHeight": 1080,
+  "defaultCommandTimeout": 16000,
+  "pageLoadTimeout": 120000,
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6; Cypress) AppleWebKit/537.36 (KHTML, like Gecko, Cypress) Chrome/85.0.4183.102 Safari/537.36",
   "screenshotsFolder": "./cypress/snapshots/actual",
   "trashAssetsBeforeRuns": true,
