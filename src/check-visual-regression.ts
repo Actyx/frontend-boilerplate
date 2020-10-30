@@ -4,7 +4,11 @@ import { exec } from 'shelljs';
 
 const DIR_DIFF = './cypress/snapshots/diff';
 
-const isDirEmpty = (path: string) => util.readFile(path).then((files) => files.length === 0);
+const isDirEmpty = (path: string) =>
+  util
+    .readFile(path)
+    .then((files) => files.length === 0)
+    .catch(() => false);
 
 const checkVisualRegression = async () => {
   const hasDirDiff = await fs.pathExists(DIR_DIFF);
@@ -19,7 +23,12 @@ const checkVisualRegression = async () => {
 
   const isDirDiffEmpty = await isDirEmpty(DIR_DIFF);
 
-  return isDirDiffEmpty ? console.log('All good! No visual differences') : process.exit(1);
+  if (isDirDiffEmpty) {
+    console.log('All good! No visual differences');
+  } else {
+    console.error('Some visuals do not match or are failing!');
+    process.exit(1);
+  }
 };
 
 checkVisualRegression();
