@@ -31,7 +31,8 @@
     "evaluate:dev": "npm run cy:run && npm run links:check:dev",
     "visual:base": "./node_modules/.bin/cypress run --env type=base --config screenshotsFolder=cypress/snapshots/base",
     "visual:diff": "./node_modules/.bin/cypress run --env type=actual",
-    "visual": "ts-node ./src/check-visual-regression.ts"
+    "visual": "ts-node ./src/check-visual-regression.ts",
+    "visual:clean": "shx rm -rf ./cypress/snapshots"
   },
   "dependencies": {
     "@types/fs-extra": "^9.0.2",
