@@ -1,5 +1,5 @@
 
-# End to end testing for Actyx websites (production)
+# End to end testing for Actyx websites
 
 This project performs automatic testing on Actyx websites. It aims to catch common issues like broken links, not working web forms, and so on.
 You can use this tool for the production site or for locally on your branch.
