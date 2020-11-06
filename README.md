@@ -1,7 +1,7 @@
 
 # End to end testing for Actyx websites
 
-This project performs automatic testing on Actyx websites. It aims to catch common issues like broken links, not working web forms, and so on.
+This project performs automatic testing on Actyx websites. It aims to catch common issues like broken links, not working web forms, and visual regressions.
 
 You can use this tool for the production sites or locally on your branch.
 
@@ -39,6 +39,17 @@ Run the following scripts to run end to end testing using Cypress:
 |-----------------|-----------------------------|
 | npm run cy:open | Run Cypress app             |
 | npm run cy:run  | Run Cypress headless chrome |
+
+## Visual regression
+
+Visual regression works by creating a set of test screenshots across several viewports and compares them with your reference screenshots.
+If the test you ran looks good, then go ahead and approve it. Approving changes will update your reference files with the results from your last test. Future tests are compared against your most recent approved test screenshots.
+
+| Script                   | Description                                                        |
+|--------------------------|--------------------------------------------------------------------|
+| npm run visual:reference | Create a set of reference screenshots                              |
+| npm run visual:test      | Creates a set of test screenshots and compares them with reference |
+| npm run visual:approve   | Approve tests screenshots                                          |
 
 ## ENV variables
 

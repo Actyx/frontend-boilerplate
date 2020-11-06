@@ -23,7 +23,10 @@
     "links:check:dev:download": "ts-node ./src/check-links.ts dev download",
     "links:check:dev": "npm run links:check:dev:developer && npm run links:check:dev:main && npm run links:check:dev:download",
     "test": "npm run cy:run && npm run links:check:prod",
-    "test:dev": "npm run cy:run && npm run links:check:dev"
+    "test:dev": "npm run cy:run && npm run links:check:dev",
+    "visual:test": "backstop test",
+    "visual:reference": "backstop reference",
+    "visual:approve": "backstop approve"
   },
   "dependencies": {
     "backstopjs": "^5.0.6",
