@@ -3,8 +3,14 @@ report-links
 
 # Project specifics
 build
+
+# E2E testing
 cypress/screenshots
 cypress/videos
+
+# Visual regression
+backstop_data/html_report
+bitmaps_test
 
 # Logs
 logs

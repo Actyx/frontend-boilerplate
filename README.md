@@ -83,7 +83,7 @@ export CYPRESS_AX_WEB_E2E_STORAGE=https://axartifacts.blob.core.windows.net/arti
 
 ### Build locally www.actyx.com
 
-- Go to www.actyx.com folder and run `npm run build`
+- Go to www.actyx.com folder and run `npm run build:preview`
 - Run website locally: `npm run serve`
 - Switch to this repository and export some global variable: `export AX_WEB_E2E_MAIN='http://localhost:9000'`
 - Now you can run tests for instance using: `links:check:dev:main`
